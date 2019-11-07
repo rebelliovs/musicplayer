@@ -2,8 +2,13 @@ package com.psyovs.mp3player;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.IBinder;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,6 +22,7 @@ import java.io.File;
 public class MainActivity extends AppCompatActivity {
 
     ToggleButton playPause;
+    private MusicService.ServiceBinder musicBinder = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +46,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Intent intent = new Intent(this, MusicService.class);
+        this.startService(intent);
+        this.bindService(new Intent(this, MusicService.class),
+                serviceConnection, Context.BIND_AUTO_CREATE);
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 
     public void onToggle (View v) {
@@ -58,5 +74,25 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+    public void onStop (View v) {
+
+    }
+
+    private ServiceConnection serviceConnection = new ServiceConnection()
+    {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder
+                service) {
+            Log.d("g53mdp", "MainActivity onServiceConnected");
+            musicBinder = (MusicService.ServiceBinder) service;
+
+        }
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            Log.d("g53mdp", "MainActivity onServiceDisconnected");
+            musicBinder = null;
+        }
+    };
 
 }
