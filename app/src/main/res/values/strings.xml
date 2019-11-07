@@ -3,4 +3,5 @@
     <string name="stop">\u25A0</string>
     <string name="play"><big>\u25B6</big></string>
     <string name="pause">\u23F8</string>
+    <string name="time">00:00</string>
 </resources>

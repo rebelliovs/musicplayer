@@ -8,11 +8,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.ListView;
+import android.widget.ToggleButton;
 
 import java.io.File;
 
 public class MainActivity extends AppCompatActivity {
+
+    ToggleButton playPause;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,4 +41,22 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+    public void onToggle (View v) {
+
+        playPause = (ToggleButton) findViewById(R.id.buttonState);
+
+        playPause.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+
+                } else {
+
+                }
+            }
+        });
+
+    }
+
 }
