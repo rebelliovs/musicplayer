@@ -16,20 +16,33 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0">
 
-    <ToggleButton
-        android:id="@+id/buttonState"
+    </ListView>
+
+    <Button
+        android:id="@+id/buttonPlay"
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginBottom="16dp"
         android:onClick="onToggle"
-        android:textOff="@string/play"
-        android:textOn="@string/pause"
+        android:text="@string/play"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonPause"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="16dp"
+        android:onClick="onToggle"
+        android:text="@string/pause"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonPlay" />
 
     <Button
         android:id="@+id/buttonStop"
@@ -38,7 +51,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="16dp"
-        android:onClick="onStop"
+        android:onClick="onToggle"
         android:text="@string/stop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/buttonRefresh" />
@@ -50,6 +63,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
+        android:onClick="onToggle"
         android:text="@string/refresh"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -81,7 +95,7 @@
         android:text="@string/time"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/timeElapsed"
-        app:layout_constraintStart_toEndOf="@+id/buttonState" />
+        app:layout_constraintStart_toEndOf="@+id/buttonPause" />
 
     <TextView
         android:id="@+id/timeLeft"
