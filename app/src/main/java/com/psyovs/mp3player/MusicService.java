@@ -103,11 +103,11 @@ public class MusicService extends Service {
         }
 
         int duration() {
-            return mp3.getDuration()/1000;
+            return mp3.getDuration();
         }
 
         int progress() {
-            return mp3.getProgress()/1000;
+            return mp3.getProgress();
         }
 
     }
