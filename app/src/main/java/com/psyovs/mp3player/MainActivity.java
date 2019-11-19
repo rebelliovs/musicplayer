@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("g53mdp", selectedFromList.getAbsolutePath());
                 // do something with selectedFromList...
                 musicBinder.getSong(selectedFromList.getAbsolutePath());
+                musicBinder.notification();
                 progress();
                 //updateGraphic();
             }
@@ -104,6 +105,9 @@ public class MainActivity extends AppCompatActivity {
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(musicBinder.state() == MP3Player.MP3PlayerState.PAUSED) {
+                    musicBinder.notification();
+                }
                 musicBinder.play();
                 progress();
             }
@@ -113,6 +117,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 musicBinder.pause();
+                if(musicBinder.state() == MP3Player.MP3PlayerState.PAUSED) {
+                    musicBinder.stopNotifs();
+                }
                 progress();
             }
         });
@@ -121,6 +128,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 musicBinder.stop();
+                musicBinder.stopNotifs();
                 progress();
             }
         });

@@ -46,22 +46,23 @@ public class MusicService extends Service {
             // Register the channel with the system; you can't change the importance
             // or other notification behaviors after this
             notificationManager.createNotificationChannel(channel);
-
-            Intent intent = new Intent(this, MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-
-            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
-
-            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this,
-                    CHANNEL_ID)
-                    .setSmallIcon(R.drawable.ic_launcher_background)
-                    .setContentTitle("Music..")
-                    .setContentText("..is playing")
-                    .setContentIntent(pendingIntent)
-                    .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-
-            startForeground(NOTIFICATION_ID, mBuilder.build());
         }
+
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this,
+                CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_music_note_black_24dp) // taken from https://material.io/resources/icons/?search=music&icon=music_note&style=baseline
+                .setContentTitle("Music..")
+                .setContentText("..is playing")
+                .setContentIntent(pendingIntent)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+        startForeground(NOTIFICATION_ID, mBuilder.build());
+
     }
 
     private void stopNotifs() {
